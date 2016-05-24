@@ -1,6 +1,6 @@
 #!/bin/bash
 
-trap "echo Text files sorting stopped" SIGINT
+trap "NoSorting" SIGINT
 
 . ~/Projects/CS225/functionLibrary.sh
 

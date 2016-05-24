@@ -35,3 +35,8 @@ GetTimeStamp()
                 DAY=${TMP%%-*}
 
 }
+
+NoSorting()
+{
+	echo "Text files sorting stopped"
+}
