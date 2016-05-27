@@ -6,7 +6,7 @@ trap "addresstrap" SIGINT
 
 addresstrap()
 {
-echo "   Information being displaying stopped!!!! "
+echo "   Information being displayed stopped!!!! "
 echo "   Exiting.... "
 exit
 
