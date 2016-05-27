@@ -6,7 +6,8 @@ trap "addresstrap" SIGINT
 
 addresstrap()
 {
-echo "   Information being displaying stopped"
+echo "   Information being displaying stopped!!!! "
+echo "   Exiting.... "
 exit
 
 }
@@ -55,7 +56,7 @@ textfile=${textfile#*,\"}
 
 #echo "counter is $COUNTER"
 
-echo ${FNAME[$COUNTER]} ${LNAME[$COUNTER]} ${COMPANY[$COUNTER]} ${STREET[$COUNTER]} ${CITY[$COUNTER]} ${COUNTY[$COUNTER]} ${STATE[$COUNTER]} ${ZIP[$COUNTER]} ${HPHONE[$COUNTER]} ${WPHONE[$COUNTER]} ${EMAIL[$COUNTER]} ${WEBURL[$COUNTER]}
+echo \""${FNAME[$COUNTER]}"\",\""${LNAME[$COUNTER]}"\",\""${COMPANY[$COUNTER]}"\",\""${STREET[$COUNTER]}"\",\""${CITY[$COUNTER]}"\",\""${COUNTY[$COUNTER]}"\",\""${STATE[$COUNTER]}"\",\""${ZIP[$COUNTER]}"\",\""${HPHONE[$COUNTER]}"\",\""${WPHONE[$COUNTER]}"\",\""${EMAIL[$COUNTER]}"\",\""${WEBURL[$COUNTER]}"\"
 
 
 ((COUNTER++))
