@@ -1,5 +1,7 @@
 #!/bin/bash
 
+trap "NoSorting" SIGINT
+
 . ~/Projects/CS225/library.sh
 
 DIRECTORY=~/Projects/CS225/finalfiles/
@@ -7,6 +9,9 @@ DIRECTORY=~/Projects/CS225/finalfiles/
 LSDIR=$( find $DIRECTORY )
 
 #FILELINE=$(stat --format '%y')
+
+TMP=$(mktemp)
+
 
 while getopts :fdth opt ;do
 
@@ -41,3 +46,5 @@ for LINE in $LSDIR ;do
 		fi
 	fi
 done
+
+cleanup

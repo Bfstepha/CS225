@@ -38,8 +38,19 @@ GetTimeStamp()
 
 NoSorting()
 {
-	echo "Text files sorting stopped"
+	echo "Media files sorting stopped"
 }
+
+cleanup()
+{
+        # removes tmp
+
+        rm -Rf $TMP
+        echo "Cleaned up tmp file"
+
+        exit
+}
+
 
 TARUNZIP()
 {
