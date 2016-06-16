@@ -4,7 +4,10 @@ trap "NoSorting" SIGINT
 
 . ~/Projects/CS225/library.sh
 
-DIRECTORY=~/Projects/CS225/finalfiles/
+
+rm -Rf root/Projects/CS225/finalfiles/2016
+
+DIRECTORY=~/Projects/CS225/finalfiles
 
 LSDIR=$( find $DIRECTORY )
 
@@ -39,10 +42,11 @@ for LINE in $LSDIR ;do
 		if [ -z $FORCE ] ;then
 
 			copyfiles
+		#	CheckCameraMakeModelDT
 		else
 
 			movefiles
-
+		#	CheckCameraMakeModelDT
 		fi
 	fi
 done

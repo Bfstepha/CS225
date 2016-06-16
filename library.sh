@@ -36,6 +36,13 @@ GetTimeStamp()
 
 }
 
+CheckCameraMakeModelDT()
+{
+
+		
+
+}
+
 NoSorting()
 {
 	echo "Media files sorting stopped"
