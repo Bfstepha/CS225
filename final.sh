@@ -5,6 +5,15 @@ trap "NoSorting" SIGINT
 . ~/Projects/CS225/library.sh
 
 
+TMP=$(mktemp)
+TMP1=$(mktemp)
+TMP2=$(mktemp)
+TMP3=$(mktemp -d)
+
+ifExif
+
+ifExiftool
+
 rm -Rf root/Projects/CS225/finalfiles/2016
 
 DIRECTORY=~/Projects/CS225/finalfiles
@@ -13,8 +22,10 @@ LSDIR=$( find $DIRECTORY )
 
 #FILELINE=$(stat --format '%y')
 
-TMP=$(mktemp)
-
+#TMP=$(mktemp)
+#TMP1=$(mktemp)
+#TMP2=$(mktemp)
+#TMP3=$(mktemp -d)
 
 while getopts :fdth opt ;do
 
