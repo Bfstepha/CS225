@@ -48,6 +48,21 @@ else
 fi	
 } &>~/Projects/CS225/exiftool.log 
 
+#Setup Function
+Start_Setup()
+{
+	#used with the -f option
+	MOVE="FALSE"
+	
+	#Arrays and Counters
+	declare -a YEAR; counterY=0;  
+	declare -a MONTH;
+	declare -a DAY;
+
+	FILEDIR="$OPTARG"
+
+
+}
 
 CheckDirectory()
 {
@@ -89,7 +104,7 @@ GetTimeStamp()
 CheckCameraMakeModelDT()
 {
  
-	exiftool "-FileName<CreateDate" -d "%Y-%m-%d_%H-%M-%s_${model;}" ~/Projects/CS225/finalfiles/
+	exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_${model;}%%_c.%%e ${DIRECTORY}/${YEAR}/${DAY} 
 
 }
 

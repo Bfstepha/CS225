@@ -16,7 +16,7 @@ LSDIR=$( find $DIRECTORY )
 
 #FILELINE=$(stat --format '%y')
 
-#TMP=$(mktemp)
+TMP=$(mktemp)
 #TMP1=$(mktemp)
 #TMP2=$(mktemp)
 #TMP3=$(mktemp -d)
@@ -47,13 +47,14 @@ for LINE in $LSDIR ;do
 		if [ -z $FORCE ] ;then
 
 			copyfiles 
-			CheckCameraMakeModelDT
+		#	CheckCameraMakeModelDT
 		else
 
 			movefiles
 		#	CheckCameraMakeModelDT
 		fi
 	fi
+CheckCameraMakeModelDT
 done
 
 cleanup
