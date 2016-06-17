@@ -4,17 +4,11 @@ trap "NoSorting" SIGINT
 
 . ~/Projects/CS225/library.sh
 
+if_Exif
 
-TMP=$(mktemp)
-TMP1=$(mktemp)
-TMP2=$(mktemp)
-TMP3=$(mktemp -d)
+if_Exiftool
 
-ifExif
-
-ifExiftool
-
-rm -Rf root/Projects/CS225/finalfiles/2016
+rm -Rf ~/Projects/CS225/finalfiles/2016
 
 DIRECTORY=~/Projects/CS225/finalfiles
 
@@ -52,8 +46,8 @@ for LINE in $LSDIR ;do
 
 		if [ -z $FORCE ] ;then
 
-			copyfiles
-		#	CheckCameraMakeModelDT
+			copyfiles 
+			CheckCameraMakeModelDT
 		else
 
 			movefiles

@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Checking if exiv2 is installed or needs to be installed
-ifExif()
+if_Exif()
 {
 
 exiv2 &>/dev/null
-if [[ ${?} = 127 ]] then
+if [[ ${?} = 127 ]] ;then
 
 	logger "Installing Exif (exiv2) from ${0} script."
 	yum -y install exiv2 &>~/Projects/CS225/installexiv2.log
-	echo "Exif (exiv2)is installed!"
+	echo "Exif (exiv2) is installed!"
 	
 else 
 	logger "Exif (exiv2) is already installed"
@@ -20,16 +20,17 @@ fi
 
 
 # Checking if exiftool is installed or needs to be installed
-ifExiftool()
+if_Exiftool()
 {
 
 exiftool &>/dev/null
-if [[ ${?} = 127 ]] then
+if [[ ${?} = 127 ]] ;then
 
 	logger "Installing Exiftool from ${0} script."
 	yum -y install perl-ExtUtils-MakeMaker &>~/Projects/CS225/perl-ExtUtils.log
 	# Using temp dir to download and unzip program files
 	# Got this idea from http://www.sno.phy.queensu.ca/~phil/exiftool/install.html
+	TMP3=$(mktemp -d)
 	cd ${TMP3}
 	wget http://www.sno.phy.queensu.ca/~phil/exiftool/Image-ExifTool-10.20.tar.gz
 	gzip -dc Image-ExifTool-10.20.tar.gz | tar -xf -
@@ -84,16 +85,18 @@ GetTimeStamp()
 
 }
 
+#2014-8-24_8-30-16_Canon-S80_2.jpg
 CheckCameraMakeModelDT()
 {
-
-		exiftool 		
+ 
+	exiftool "-FileName<CreateDate" -d "%Y-%m-%d_%H-%M-%s_${model;}" ~/Projects/CS225/finalfiles/
 
 }
 
 NoSorting()
 {
 	echo "Media files sorting stopped"
+	cleanup
 }
 
 cleanup()
