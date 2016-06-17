@@ -55,11 +55,11 @@ Start_Setup()
 	MOVE="FALSE"
 	
 	#Arrays and Counters
-	declare -a YEAR; counterY=0;  
-	declare -a MONTH;
-	declare -a DAY;
+	declare -a YEAR; counterY=0; iY=0; 
+	declare -a MONTH; counterM=0; iM=0;
+	declare -a DAY; counterD=0; iD=0;
 
-	FILEDIR="$OPTARG"
+	="$OPTARG"
 
 
 }
@@ -103,9 +103,14 @@ GetTimeStamp()
 #2014-8-24_8-30-16_Canon-S80_2.jpg
 CheckCameraMakeModelDT()
 {
- 
+if [ ! ${model} ] ;then 
 	exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_${model;}%%_c.%%e ${DIRECTORY}/${YEAR}/${DAY} 
 
+else
+
+	 exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_UNKNOWN%%_c.%%e ${DIRECTORY}/${YEAR}/${DAY}
+
+fi
 }
 
 NoSorting()
