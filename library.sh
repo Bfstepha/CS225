@@ -104,11 +104,11 @@ GetTimeStamp()
 CheckCameraMakeModelDT()
 {
 if [ ! ${model} ] ;then 
-	exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_${model;}%%_c.%%e ${DIRECTORY}/${YEAR}/${DAY} 
+	exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_${model;}%%_c.%%e 
 
 else
 
-	 exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_UNKNOWN%%_c.%%e ${DIRECTORY}/${YEAR}/${DAY}
+	 exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_UNKNOWN%%_c.%%e 
 
 fi
 }

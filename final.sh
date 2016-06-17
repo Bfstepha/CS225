@@ -17,7 +17,7 @@ LSDIR=$( find $DIRECTORY )
 #FILELINE=$(stat --format '%y')
 
 TMP=$(mktemp)
-#TMP1=$(mktemp)
+TMP1=$(mktemp)
 #TMP2=$(mktemp)
 #TMP3=$(mktemp -d)
 
