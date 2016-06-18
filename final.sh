@@ -8,7 +8,7 @@
 
 trap "TRAP_T" SIGTERM
 
-trap "trapCleanup" SIGINT SIGTERM
+trap "trapCleanup" SIGINT
 
 #trap "Error" INT TERM
 
