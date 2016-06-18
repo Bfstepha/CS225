@@ -30,8 +30,8 @@ if [[ ${?} = 127 ]] ;then
 	yum -y install perl-ExtUtils-MakeMaker &>~/Projects/CS225/perl-ExtUtils.log
 	# Using temp dir to download and unzip program files
 	# Got this idea from http://www.sno.phy.queensu.ca/~phil/exiftool/install.html
-	TMP3=$(mktemp -d)
-	cd ${TMP3}
+	TMP4=$(mktemp -d)
+	cd ${TMP5}
 	wget http://www.sno.phy.queensu.ca/~phil/exiftool/Image-ExifTool-10.20.tar.gz
 	gzip -dc Image-ExifTool-10.20.tar.gz | tar -xf -
 	cd Image-ExifTool-10.20/
@@ -39,7 +39,7 @@ if [[ ${?} = 127 ]] ;then
     	make test
     	make install
 	cd
-	rm -Rf ${TMP3}
+	rm -Rf ${TMP5}
 else
 	
 	logger "Exiftool is already installed."
@@ -48,21 +48,6 @@ else
 fi	
 } &>~/Projects/CS225/exiftool.log 
 
-#Setup Function
-Start_Setup()
-{
-	#used with the -f option
-	MOVE="FALSE"
-	
-	#Arrays and Counters
-	declare -a YEAR; counterY=0; iY=0; 
-	declare -a MONTH; counterM=0; iM=0;
-	declare -a DAY; counterD=0; iD=0;
-
-	="$OPTARG"
-
-
-}
 
 CheckDirectory()
 {
@@ -103,14 +88,44 @@ GetTimeStamp()
 #2014-8-24_8-30-16_Canon-S80_2.jpg
 CheckCameraMakeModelDT()
 {
+TMP1=${File_Name}
+TMP2=${Create_Date}
+TMP3=${Camera_Model}
+TMP4=${Camera_Make}
+
+exiftool -t | grep File | awk '{ print $3 }' | grep .jpg =$File_Name
+exiftool -t | grep "Create\|^Modification Date$" | awk '{ print $3,$4 }' =$Create_Date
+exiftool -t | grep Camera | awk '/Name/{ print $4 }' =$Camera_Model
+exiftool -t | grep Make | awk '{ print $2 }' =$Camera_Make
+
 if [ ! ${model} ] ;then 
-	exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_${model;}%%_c.%%e 
+	exiftool '-FileName<${model;} ${CreateDate}' -d %Y-%m-%d_%I-%M-%S%%-c.%%e $DIRECTORY/$YEAR/$MONTH/$DAY
 
 else
 
-	 exiftool '-FileName<CreateDate' -d %Y-%m-%d_%H-%M-%S_UNKNOWN%%_c.%%e 
+	 exiftool '-FileName<${CreateDate}' -d %Y-%m-%d_%I-%M-%S_UNKNOWN%%-c.%%e $DIRECTORY/$YEAR/$MONTH/$DAY
 
 fi
+}
+
+CheckVideoNameDT()
+{
+
+ TMP6=${Video_File_Name}
+ TMP7=${Video_Date_Time}
+
+ exiftool -t | grep File | awk '{ print $3 }' | grep '.AVI\|.mts' =$Video_File_Name
+ exiftool -t | grep Date/Time | awk '/Original/{ print $3,$4 }' | sed 's/......$//' =$Video_Date_Time
+
+ if [ ! ${model} ] ;then
+         exiftool '-FileName<${model;} ${CreateDate}' -d %Y-%m-%d_%I-%M-%S%%-c.%%e $DIRECTORY/$YEAR/$MONTH/$DAY
+
+else
+
+	 exiftool '-FileName<${CreateDate}' -d %Y-%m-%d_%I-%M-%S_UNKNOWN%%-c.%%e $DIRECTORY/$YEAR/$MONTH/$DAY
+
+ fi
+
 }
 
 NoSorting()
@@ -126,6 +141,7 @@ cleanup()
         rm -Rf $TMP
 	rm -Rf $TMP1
 	rm -Rf $TMP2
+	rm -Rf $TMP3
         echo "Cleaned up TMP files"
 
         exit

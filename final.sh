@@ -10,6 +10,8 @@ if_Exiftool
 
 rm -Rf ~/Projects/CS225/finalfiles/2016
 
+declare -a YEAR MONTH DAY
+
 DIRECTORY=~/Projects/CS225/finalfiles
 
 LSDIR=$( find $DIRECTORY )
@@ -18,8 +20,12 @@ LSDIR=$( find $DIRECTORY )
 
 TMP=$(mktemp)
 TMP1=$(mktemp)
-#TMP2=$(mktemp)
-#TMP3=$(mktemp -d)
+TMP2=$(mktemp)
+TMP3=$(mktemp)
+TMP4=$(mktemp)
+#TMP5=$(mktemp -d)
+TMP6=$(mktemp)
+TMP7=$(mktemp)
 
 while getopts :fdth opt ;do
 
